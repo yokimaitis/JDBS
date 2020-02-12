@@ -7,7 +7,7 @@ public class JDBCConnector {
     public static final String DRIVER_NAME = "org.postgresql.Driver";
     public static final String DB_URL = "jdbc:postgresql://localhost/postgres";
     public static final String USER_NAME = "postgres";
-    public static final String PASSWORD = "";
+    public static final String PASSWORD = "12345";
     public static final String EMPTY = "";
     public static final String LINE = "\n";
 
