@@ -31,13 +31,11 @@ public class DataBase {
         inputAutor = new Scanner(System.in).nextLine();
         try {
             Connection connection = JDBCConnector.createConnection();
-
             PreparedStatement statment = connection.prepareStatement("Select id from autor WHERE autor_name='" + inputAutor + "'");
             ResultSet resultSet = statment.executeQuery();
             if (resultSet != null) {
-                while (resultSet.next()) {
-                    autorId = resultSet.getInt("id");
-                }
+                resultSet.next();
+                autorId = resultSet.getInt("id");
                 if (autorId > 0) {
                     statment = connection.prepareStatement("Select book_name from book WHERE autor_id=" + autorId);
                     resultSet = statment.executeQuery();

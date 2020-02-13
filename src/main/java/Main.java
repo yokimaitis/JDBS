@@ -14,7 +14,7 @@ public class Main {
         System.out.println("Введите 4 - Для добавления Книги.\n");
         input = Integer.valueOf(new Scanner(System.in).nextLine());
 
-      switch (input){
+       switch (input){
             case 1: {DataBase.printAutors();break;}
             case 2: {DataBase.printBooks();break;}
             case 3: {DataBase.addAutor();break;}
