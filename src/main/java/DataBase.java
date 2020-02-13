@@ -65,17 +65,35 @@ public class DataBase {
 
     public static void addAutor() {
         String inputAutor = "";
+        Integer autorId = 0;
         System.out.println("Добавление Автора...");
         System.out.println("");
 
         System.out.println("Введите автора книги:");
         inputAutor = new Scanner(System.in).nextLine();
 
+
+     ////////////////////////
+
+   ////////////////////////////////////////
+
+
+        //////
         try {
-            Connection connection = JDBCConnector.createConnection();
-            PreparedStatement statment = connection.prepareStatement("INSERT INTO autor (autor_name) VALUES ('" + inputAutor + "');");
-            if (statment.executeUpdate() > 0) ;
-            System.out.println("Автор " + inputAutor + " добавлен..");
+        Connection connection = JDBCConnector.createConnection();
+        PreparedStatement statment = connection.prepareStatement("Select id from autor WHERE autor_name='" + inputAutor + "'");
+        ResultSet resultSet = statment.executeQuery();
+        if (resultSet != null) {
+            while (resultSet.next()) {
+                autorId = resultSet.getInt("id");
+            }
+            if (autorId == 0) {
+            connection = JDBCConnector.createConnection();
+            statment = connection.prepareStatement("INSERT INTO autor (autor_name) VALUES ('" + inputAutor + "');");
+            if (statment.executeUpdate() > 0) System.out.println("Автор " + inputAutor + " добавлен..");
+            } else {System.out.println("Такой автор уже есть в базе.");return;}
+        }
+
         } catch (SQLException e) {
             System.out.println("Ошибка добавления автора.....");
             e.printStackTrace();
