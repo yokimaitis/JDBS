@@ -1,16 +1,18 @@
 import java.util.ArrayList;
+import java.util.Scanner;
 
 public class Main {
     public static void main(String[] args) {
+ //       ArrayList<Author> authors;
+ //       authors = new Library().getAuthors();
 
-        ArrayList<Author> authors = new ArrayList<>();
-        authors = JDBCConnector.loadAutors(authors);
+        String a = new Scanner(System.in).nextLine();
+        Author author = new Library().getBooks(a);
 
-        for (int i = 0; i <authors.size() ; i++) {
-            System.out.println(authors.get(i).getBookAuthor());
 
+        for (int i = 0; i < author.getBooks().size() ; i++) {
+            System.out.println(author.getBooks().get(i).getBookName());
         }
-
 
 /////////////////   OLD   //////////////////
 

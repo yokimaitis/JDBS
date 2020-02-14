@@ -29,4 +29,11 @@ public class Author {
         this.books = books;
     }
 
+    public Author(String bookAuthor, Integer authorId) {
+        this.bookAuthor = bookAuthor;
+        this.authorId = authorId;
+    }
+
+    public Author() {
+    }
 }

@@ -26,4 +26,12 @@ public class Book {
     public void setBookYear(Integer bookYear) {
         this.bookYear = bookYear;
     }
+
+    public Book() {
+    }
+
+    public Book(String bookName, Integer bookId) {
+        this.bookName = bookName;
+        this.bookId = bookId;
+    }
 }
