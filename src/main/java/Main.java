@@ -9,7 +9,7 @@ public class Main {
         String a = new Scanner(System.in).nextLine();
         Author author = new Library().getBooks(a);
 
-
+        System.out.println("Книги автора "+author.getBookAuthor()+": ");
         for (int i = 0; i < author.getBooks().size() ; i++) {
             System.out.println(author.getBooks().get(i).getBookName());
         }
