@@ -1,19 +1,32 @@
 import java.util.ArrayList;
 
 public class Author {
-    private ArrayList<TableLine> authorTable;
+    private String bookAuthor;
+    private Integer authorId;
+    private ArrayList<Book> books;
 
-    public void setAuthorTable(ArrayList<TableLine> authorTable) {
-        this.authorTable = authorTable;
+    public String getBookAuthor() {
+        return bookAuthor;
     }
 
-    public ArrayList<TableLine> getAuthorTable() {
-        return authorTable;
+    public Integer getAuthorId() {
+        return authorId;
     }
 
-    public Author() {
-        authorTable = new ArrayList<>();
-        Table table = new Table();
-        authorTable = table.getData(table.createTable(),"author");
+    public ArrayList<Book> getBooks() {
+        return books;
     }
+
+    public void setBookAuthor(String bookAuthor) {
+        this.bookAuthor = bookAuthor;
+    }
+
+    public void setAuthorId(Integer authorId) {
+        this.authorId = authorId;
+    }
+
+    public void setBooks(ArrayList<Book> books) {
+        this.books = books;
+    }
+
 }

@@ -1,11 +1,29 @@
-import java.util.ArrayList;
-
 public class Book {
-    private  ArrayList<TableLine> bookTable;
+    private String bookName;
+    private Integer bookId;
+    private Integer bookYear;
 
-    public void BookTableCreate() {
-        Table table = new Table();
-        this.bookTable = table.getData(table.createTable(),"book");
+    public String getBookName() {
+        return bookName;
+    }
 
+    public Integer getBookId() {
+        return bookId;
+    }
+
+    public Integer getBookYear() {
+        return bookYear;
+    }
+
+    public void setBookName(String bookName) {
+        this.bookName = bookName;
+    }
+
+    public void setBookId(Integer bookId) {
+        this.bookId = bookId;
+    }
+
+    public void setBookYear(Integer bookYear) {
+        this.bookYear = bookYear;
     }
 }

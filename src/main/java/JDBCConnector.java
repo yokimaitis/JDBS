@@ -31,6 +31,29 @@ public class JDBCConnector {
         }
     }
 
+    public static ArrayList<Author> loadAutors(ArrayList<Author> authors) {
+        String sql = "Select author_name,id from author";
+        Integer x=0;
+        try {
+            Connection connection = JDBCConnector.createConnection();
+            PreparedStatement statment = connection.prepareStatement(sql);
+            ResultSet resultSet = statment.executeQuery();
+            if (resultSet != null) {
+                while (resultSet.next()) {
+                    Author tempAuthor = new Author();
+                    tempAuthor.setBookAuthor(resultSet.getString("author_name"));
+                    tempAuthor.setAuthorId(resultSet.getInt("id"));
+                    authors.add(tempAuthor);
+                    x++;
+                }
+            }
+        } catch (SQLException e) {
+            System.out.println("Ошибка выполнения sql.....");
+            e.printStackTrace();
+        }
+        return authors;
+    }
+
     public static ArrayList<TableLine> fetchingData(ArrayList<TableLine> inputTable, String tableName) {
         String sql = "";
         int x = 0;
@@ -44,11 +67,10 @@ public class JDBCConnector {
             if (resultSet != null) {
                 while (resultSet.next()) {
                     TableLine tableLine = new TableLine();
-                    if (tableName=="author") {
+                    if (tableName == "author") {
                         tableLine.setNameField(resultSet.getString("author_name"));
                         tableLine.setIdField(resultSet.getInt("id"));
-                    } else
-                    {
+                    } else {
                         tableLine.setNameField(resultSet.getString("book_name"));
                         tableLine.setIdField(resultSet.getInt("author_id"));
                     }
