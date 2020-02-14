@@ -1,7 +1,3 @@
-import java.lang.invoke.SwitchPoint;
-import java.sql.*;
-import java.util.ArrayList;
-import java.util.List;
 import java.util.Scanner;
 
 public class Main {
@@ -12,7 +8,10 @@ public class Main {
         System.out.println("Введите 2 - Для просмотра книг автора.");
         System.out.println("Введите 3 - Для добавления Автора.");
         System.out.println("Введите 4 - Для добавления Книги.\n");
-        input = Integer.valueOf(new Scanner(System.in).nextLine());
+
+       AuthorTable.AuthorTableCreate();
+
+     //   input = Integer.valueOf(new Scanner(System.in).nextLine());
 
        switch (input){
             case 1: {DataBase.printAutors();break;}

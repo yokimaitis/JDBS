@@ -9,12 +9,12 @@ public class DataBase {
     public static void printAutors() {
         try {
             Connection connection = JDBCConnector.createConnection();
-            PreparedStatement statment = connection.prepareStatement("Select autor_name from autor");
+            PreparedStatement statment = connection.prepareStatement("Select author_name from author");
             ResultSet resultSet = statment.executeQuery();
             System.out.println("Авторы в базе: \n");
             if (resultSet != null) {
                 while (resultSet.next()) {
-                    System.out.println(resultSet.getString("autor_name"));
+                    System.out.println(resultSet.getString("author_name"));
                 }
             }
         } catch (SQLException e) {
@@ -24,23 +24,23 @@ public class DataBase {
     }
 
     public static void printBooks() {
-        String inputAutor = "";
+        String inputAuthor = "";
         ;
         Integer autorId = 0;
         System.out.println("Введите автора книги:");
-        inputAutor = new Scanner(System.in).nextLine();
+        inputAuthor = new Scanner(System.in).nextLine();
         try {
             Connection connection = JDBCConnector.createConnection();
-            PreparedStatement statment = connection.prepareStatement("Select id from autor WHERE autor_name='" + inputAutor + "'");
+            PreparedStatement statment = connection.prepareStatement("Select id from author WHERE author_name='" + inputAuthor + "'");
             ResultSet resultSet = statment.executeQuery();
             if (resultSet != null) {
                 resultSet.next();
                 autorId = resultSet.getInt("id");
                 if (autorId > 0) {
-                    statment = connection.prepareStatement("Select book_name from book WHERE autor_id=" + autorId);
+                    statment = connection.prepareStatement("Select book_name from book WHERE author_id=" + autorId);
                     resultSet = statment.executeQuery();
                     if (resultSet != null) {
-                        System.out.println("Найденные книги автора " + inputAutor + ": ");
+                        System.out.println("Найденные книги автора " + inputAuthor + ": ");
                         while (resultSet.next()) {
                             System.out.println(resultSet.getString("book_name"));
                         }
@@ -57,16 +57,16 @@ public class DataBase {
     }
 
     public static void addAutor() {
-        String inputAutor = "";
+        String inputAuthor = "";
         Integer autorId = 0;
         System.out.println("Добавление Автора...");
         System.out.println("");
         System.out.println("Введите автора книги:");
-        inputAutor = new Scanner(System.in).nextLine();
+        inputAuthor = new Scanner(System.in).nextLine();
 
         try {
             Connection connection = JDBCConnector.createConnection();
-            PreparedStatement statment = connection.prepareStatement("Select id from autor WHERE autor_name='" + inputAutor + "'");
+            PreparedStatement statment = connection.prepareStatement("Select id from author WHERE author_name='" + inputAuthor + "'");
             ResultSet resultSet = statment.executeQuery();
             if (resultSet != null) {
                 while (resultSet.next()) {
@@ -74,8 +74,8 @@ public class DataBase {
                 }
                 if (autorId == 0) {
                     connection = JDBCConnector.createConnection();
-                    statment = connection.prepareStatement("INSERT INTO autor (autor_name) VALUES ('" + inputAutor + "');");
-                    if (statment.executeUpdate() > 0) System.out.println("Автор " + inputAutor + " добавлен..");
+                    statment = connection.prepareStatement("INSERT INTO author (author_name) VALUES ('" + inputAuthor + "');");
+                    if (statment.executeUpdate() > 0) System.out.println("Автор " + inputAuthor + " добавлен..");
                 } else {
                     System.out.println("Такой автор уже есть в базе.");
                     return;
@@ -89,17 +89,17 @@ public class DataBase {
 
 
     public static void addBook() {
-        String inputAutor = "";
+        String inputAuthor = "";
         String inputBook = "";
         Integer autorId = 0;
         System.out.println("Добавление Книги...");
         System.out.println("");
         System.out.println("Введите автора книги:");
-        inputAutor = new Scanner(System.in).nextLine();
+        inputAuthor = new Scanner(System.in).nextLine();
         try {
             Connection connection = JDBCConnector.createConnection();
 
-            PreparedStatement statment = connection.prepareStatement("Select id from autor WHERE autor_name='" + inputAutor + "'");
+            PreparedStatement statment = connection.prepareStatement("Select id from author WHERE author_name='" + inputAuthor + "'");
             ResultSet resultSet = statment.executeQuery();
             if (resultSet != null) {
                 while (resultSet.next()) {
@@ -108,7 +108,7 @@ public class DataBase {
                 if (autorId > 0) {
                     System.out.println("Введите название книги");
                     inputBook = new Scanner(System.in).nextLine();
-                    statment = connection.prepareStatement("INSERT INTO book (book_name,autor_id) VALUES ('" + inputBook + "'," + autorId + ");");
+                    statment = connection.prepareStatement("INSERT INTO book (book_name,author_id) VALUES ('" + inputBook + "'," + autorId + ");");
                     statment.executeUpdate();
                     System.out.println("Книга добавлена....");
                 } else {

@@ -1,7 +1,5 @@
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.ResultSet;
-import java.sql.SQLException;
+import java.sql.*;
+import java.util.ArrayList;
 
 public class JDBCConnector {
     public static final String DRIVER_NAME = "org.postgresql.Driver";
@@ -32,4 +30,27 @@ public class JDBCConnector {
             }
         }
     }
+
+    public static ArrayList<TableLine> fetchingData(ArrayList<TableLine> inputTable){
+        int x=0;
+        try {
+            Connection connection = JDBCConnector.createConnection();
+            PreparedStatement statment = connection.prepareStatement("Select author_name,id from author");
+            ResultSet resultSet = statment.executeQuery();
+            if (resultSet != null) {
+                while (resultSet.next()) {
+                    TableLine tb = new TableLine();
+                    tb.setNameField(resultSet.getString("author_name"));
+                    tb.setIdField(resultSet.getInt("id"));
+                    inputTable.add(tb);
+                    x++;
+                }
+            }
+        } catch (SQLException e) {
+            System.out.println("Ошибка поиска авторов.....");
+            e.printStackTrace();
+        }
+        return inputTable;
+    }
+
 }
