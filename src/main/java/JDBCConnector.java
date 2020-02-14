@@ -31,23 +31,33 @@ public class JDBCConnector {
         }
     }
 
-    public static ArrayList<TableLine> fetchingData(ArrayList<TableLine> inputTable){
-        int x=0;
+    public static ArrayList<TableLine> fetchingData(ArrayList<TableLine> inputTable, String tableName) {
+        String sql = "";
+        int x = 0;
         try {
+            if (tableName == "author") sql = "Select author_name,id from author";
+            else sql = "Select book_name,author_id from book";
+
             Connection connection = JDBCConnector.createConnection();
-            PreparedStatement statment = connection.prepareStatement("Select author_name,id from author");
+            PreparedStatement statment = connection.prepareStatement(sql);
             ResultSet resultSet = statment.executeQuery();
             if (resultSet != null) {
                 while (resultSet.next()) {
-                    TableLine tb = new TableLine();
-                    tb.setNameField(resultSet.getString("author_name"));
-                    tb.setIdField(resultSet.getInt("id"));
-                    inputTable.add(tb);
+                    TableLine tableLine = new TableLine();
+                    if (tableName=="author") {
+                        tableLine.setNameField(resultSet.getString("author_name"));
+                        tableLine.setIdField(resultSet.getInt("id"));
+                    } else
+                    {
+                        tableLine.setNameField(resultSet.getString("book_name"));
+                        tableLine.setIdField(resultSet.getInt("author_id"));
+                    }
+                    inputTable.add(tableLine);
                     x++;
                 }
             }
         } catch (SQLException e) {
-            System.out.println("Ошибка поиска авторов.....");
+            System.out.println("Ошибка выполнения sql.....");
             e.printStackTrace();
         }
         return inputTable;

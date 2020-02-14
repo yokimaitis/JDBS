@@ -1,10 +1,9 @@
 import java.util.ArrayList;
-import java.util.List;
 
 public class Table {
 
    ArrayList<TableLine> getData(ArrayList<TableLine> inputTable, String tableName){
-        return JDBCConnector.fetchingData(inputTable);
+        return JDBCConnector.fetchingData(inputTable, tableName);
    }
 
    public ArrayList<TableLine> createTable(){

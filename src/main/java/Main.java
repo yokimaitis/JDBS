@@ -1,15 +1,15 @@
-import java.util.Scanner;
-
 public class Main {
     public static void main(String[] args) {
         Integer input=0;
+
         System.out.println("Библиотека книг :)\n");
         System.out.println("Введите 1 - Для просмотра авторов в библиотеке.");
         System.out.println("Введите 2 - Для просмотра книг автора.");
         System.out.println("Введите 3 - Для добавления Автора.");
         System.out.println("Введите 4 - Для добавления Книги.\n");
 
-       AuthorTable.AuthorTableCreate();
+       new Author();
+    //   BookTable.BookTableCreate();
 
      //   input = Integer.valueOf(new Scanner(System.in).nextLine());
 
