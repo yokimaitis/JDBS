@@ -6,13 +6,14 @@ public class Main {
  //       ArrayList<Author> authors;
  //       authors = new Library().getAuthors();
 
-        String a = new Scanner(System.in).nextLine();
-        Author author = new Library().getBooks(a);
+  //      String a = new Scanner(System.in).nextLine();
+ //       Author author = new Library().getBooks(a);
+        new Library().addBook();
 
-        System.out.println("Книги автора "+author.getBookAuthor()+": ");
-        for (int i = 0; i < author.getBooks().size() ; i++) {
-            System.out.println(author.getBooks().get(i).getBookName());
-        }
+  //      System.out.println("Книги автора "+author.getBookAuthor()+": ");
+  //      for (int i = 0; i < author.getBooks().size() ; i++) {
+  //          System.out.println(author.getBooks().get(i).getBookName());
+  //      }
 
 /////////////////   OLD   //////////////////
 
