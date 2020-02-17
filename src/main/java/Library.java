@@ -95,6 +95,7 @@ public class Library {
         } catch (SQLException e) {
             System.out.println("Ошибка выполнения sql.....");
             e.printStackTrace();
+            return null;
         }
         author.setBooks(books);
         return author;
