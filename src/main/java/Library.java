@@ -96,7 +96,6 @@ public class Library {
         } catch (SQLException e) {
             System.out.println("Ошибка выполнения sql.....");
         }
-
         return author;
     }
 
