@@ -112,7 +112,7 @@ public class Library {
             author = getAuthor(inputAuthor);
             if (author == null) {
                 Connection connection = JDBCConnector.createConnection();
-                PreparedStatement statment = statment = connection.prepareStatement("INSERT INTO author (author_name) VALUES ('" + inputAuthor + "');");
+                PreparedStatement statment = connection.prepareStatement("INSERT INTO author (author_name) VALUES ('" + inputAuthor + "');");
                 if (statment.executeUpdate() > 0) System.out.println("Автор " + inputAuthor + " добавлен..");
                 connection.close();
                 statment.close();
