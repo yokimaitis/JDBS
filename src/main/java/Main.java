@@ -8,7 +8,6 @@ public class Main {
         boolean outCommand = false;
 
         while (outCommand != true) {
-
             System.out.println("Библиотека книг :)\n");
             System.out.println("Введите 1 - Для просмотра авторов в библиотеке.");
             System.out.println("Введите 2 - Для просмотра книг автора.");

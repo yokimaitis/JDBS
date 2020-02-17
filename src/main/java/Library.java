@@ -50,7 +50,6 @@ public class Library {
             System.out.println("Ошибка выполнения sql.....");
             e.printStackTrace();
         }
-
         return author;
     }
 
@@ -70,17 +69,18 @@ public class Library {
             statment.close();
         } catch (SQLException e) {
             System.out.println("Ошибка выполнения sql.....");
-            e.printStackTrace();
         }
         return author;
     }
 
     public Author getBooks(String authorName) {
         ArrayList<Book> books = new ArrayList<>();
-        Author author = getAuthor(authorName);
-        String sql = "Select * from book Where author_id=" + author.getAuthorId();
+        Author author = null;
         Integer x = 0;
         try {
+            Integer xy = 0;
+            author = getAuthor(authorName);
+            String sql = "Select * from book Where author_id=" + author.getAuthorId();
             Connection connection = JDBCConnector.createConnection();
             PreparedStatement statment = connection.prepareStatement(sql);
             ResultSet resultSet = statment.executeQuery();
@@ -90,14 +90,13 @@ public class Library {
                     books.add(book);
                 }
             }
+            author.setBooks(books);
             connection.close();
             statment.close();
         } catch (SQLException e) {
             System.out.println("Ошибка выполнения sql.....");
-            e.printStackTrace();
-            return null;
         }
-        author.setBooks(books);
+
         return author;
     }
 
@@ -108,7 +107,6 @@ public class Library {
         System.out.println("");
         System.out.println("Введите автора книги:");
         inputAuthor = new Scanner(System.in).nextLine();
-
         try {
             author = getAuthor(inputAuthor);
             if (author == null) {
@@ -150,7 +148,6 @@ public class Library {
                 System.out.println("Такого автора нету в базе....");
                 return;
             }
-
         } catch (SQLException e) {
             System.out.println("Ошибка добавления книги.....");
             e.printStackTrace();
