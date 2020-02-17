@@ -23,8 +23,7 @@ public class Main {
             case 2: {
                 System.out.println("Введите автора книги....");
                 String a = new Scanner(System.in).nextLine();
-                Author author;
-                author = new Library().getBooks(a);
+                Author author = new Library().getBooks(a);
                 for (int i = 0; i < author.getBooks().size(); i++) {
                     System.out.println(author.getBooks().get(i).getBookName());
                 }
