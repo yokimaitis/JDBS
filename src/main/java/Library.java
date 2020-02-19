@@ -120,7 +120,7 @@ public class Library {
                 inputBook = new Scanner(System.in).nextLine();
                 sql = "INSERT INTO book (book_name,author_id) VALUES ('" + inputBook + "'," + author.getAuthorId() + ");";
                 sqlExecuteUpdate(sql);
-                System.out.println("Книга добавлена....");
+                System.out.println("Книга добавлена....\n");
             } else {
                 System.out.println("Такого автора нету в базе....");
             }
