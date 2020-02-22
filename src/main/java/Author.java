@@ -38,13 +38,9 @@ public class Author {
     }
 
     public Integer returnBookID(String input) {
-        int out = 0;
-        for (int i = 0; i < books.size(); i++) {
-            if (input.equals(books.get(i).getBookName())) {
-                out = books.get(i).getBookId();
-                break;
-            }
-        }
-        return out;
+        for (int i = 0; i < books.size(); i++)
+            if (input.equals(books.get(i).getBookName())) return books.get(i).getBookId();
+        return 0;
     }
+
 }

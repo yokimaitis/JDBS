@@ -129,7 +129,6 @@ public class Library {
             System.out.println("Ошибка добавления книги.....");
         }
         authorAndBooks = getAuthorAndBooks(inputAuthor);
-        System.out.println("Книг автора "+authorAndBooks.getBooks().size());
         writeBookAuthor(authorAndBooks.getAuthorId(),authorAndBooks.returnBookID(inputBook));
 
     }
