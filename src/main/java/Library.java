@@ -62,7 +62,7 @@ public class Library {
         return author;
     }
 
-    public Author getBooks(String authorName) {
+    public Author getAuthorAndBooks(String authorName) {
         ArrayList<Book> books = new ArrayList<>();
         Author author = null;
         ResultSet resultSet;
@@ -72,7 +72,7 @@ public class Library {
             resultSet = sqlResultSet(sql);
             if (resultSet != null) {
                 while (resultSet.next()) {
-                    Book book = new Book(resultSet.getString("book_name"), resultSet.getInt("author_id"));
+                    Book book = new Book(resultSet.getString("book_name"), resultSet.getInt("id"));
                     books.add(book);
                 }
             }
@@ -108,6 +108,7 @@ public class Library {
         String inputAuthor = "";
         String inputBook = "";
         Author author;
+        Author authorAndBooks;
         String sql;
         System.out.println("Добавление Книги...");
         System.out.println("");
@@ -127,6 +128,15 @@ public class Library {
         } catch (SQLException e) {
             System.out.println("Ошибка добавления книги.....");
         }
+        authorAndBooks = getAuthorAndBooks(inputAuthor);
+        System.out.println("Книг автора "+authorAndBooks.getBooks().size());
+        writeBookAuthor(authorAndBooks.getAuthorId(),authorAndBooks.returnBookID(inputBook));
+
+    }
+
+    public void writeBookAuthor(Integer author_id, Integer book_id){
+        String sql = "INSERT INTO bookauthor (author_id,book_id) VALUES ("+author_id+","+book_id+");";
+        sqlExecuteUpdate(sql);
     }
 
     public ResultSet sqlResultSet(String input) {

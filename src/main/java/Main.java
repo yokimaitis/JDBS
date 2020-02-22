@@ -30,7 +30,7 @@ public class Main {
                     String a = new Scanner(System.in).nextLine();
                     Author author;
                     try {
-                        author = new Library().getBooks(a);
+                        author = new Library().getAuthorAndBooks(a);
                         for (int i = 0; i < author.getBooks().size(); i++) {
                             System.out.println(author.getBooks().get(i).getBookName());
                         }
